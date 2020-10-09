@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
   m_Name: Mossy collider
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 4514297465504893602, guid: f34f106982bfe4f68b0a32b27f1807e0,
+  m_DefaultSprite: {fileID: -8392483504755673107, guid: 9d1ee6d7ec1044e058d2ec0fc2b558ed,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1

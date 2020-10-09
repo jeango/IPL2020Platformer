@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Movement movement;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -14,7 +13,10 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //déplacement droite-gauche
-        //inverser le sprite quand on change de direction
-        //sauter mais seulement quand on est au sol
+        var h = Input.GetAxisRaw("Horizontal");
+        movement.Move(h, 0);
+        if (Input.GetButtonDown("Jump"))
+            movement.Jump();
+
     }
 }
