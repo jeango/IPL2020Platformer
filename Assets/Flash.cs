@@ -3,11 +3,14 @@ using UnityEngine;
 
 public class Flash : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _renderer;
+    [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private AnimationCurve curve;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip sound;
     private void OnEnable()
     {
-        StartCoroutine(FadeOut());
+        audioSource.PlayOneShot(sound);
+        StartCoroutine(PlayFlash());
     }
 
     [ContextMenu("Test")]
@@ -16,17 +19,17 @@ public class Flash : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    private IEnumerator FadeOut()
+    private IEnumerator PlayFlash()
     {
-        float duration = 0.5f;
+        float duration = 1f;
         float elapsed = 0;
-        var col = _renderer.color;
+        var col = sprite.color;
         while (elapsed < duration)
         {
             yield return null;
             elapsed += Time.deltaTime;
             col.a = curve.Evaluate(elapsed / duration);
-            _renderer.color = col;
+            sprite.color = col;
         }
         gameObject.SetActive(false);
     }

@@ -10,7 +10,7 @@ public class DynamicMovement : Movement
     [SerializeField] private float maxGroundDistance = 0.1f;
     [SerializeField] private LayerMask groundLayers;
     [SerializeField] private float jumpSpeed = 6;
-    
+    [SerializeField] private Animator animator;    
     private float _horizontal;
     private float _vertical;
     private bool _grounded;
@@ -19,6 +19,9 @@ public class DynamicMovement : Movement
     private Transform _transform;
     private bool _jumping;
     private int _jump;
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int JumpTrigger = Animator.StringToHash("Jump");
+    private static readonly int Grounded = Animator.StringToHash("Grounded");
 
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class DynamicMovement : Movement
     public override void Move(float horizontal, float vertical)
     {
         _horizontal = horizontal;
+        animator.SetFloat(Speed, Mathf.Abs(_horizontal));
         _vertical = vertical;
         if (horizontal > 0 && flipped || horizontal < 0 && !flipped)
             Flip();
@@ -43,6 +47,7 @@ public class DynamicMovement : Movement
     {
         if (!_jumping && _grounded)
         {
+            animator.SetTrigger(JumpTrigger);
             _jumping = true;
             return true;
         }
@@ -51,6 +56,7 @@ public class DynamicMovement : Movement
 
     private void CheckGround()
     {
+        var wasGrounded = _grounded;
         _grounded = false;
         foreach (var check in groundChecks)
         {
@@ -63,6 +69,8 @@ public class DynamicMovement : Movement
                 break;
             }
         }
+        if (wasGrounded != _grounded)
+            animator.SetBool(Grounded, _grounded);
     }
 
     private void Flip(bool updateFlip = true)
