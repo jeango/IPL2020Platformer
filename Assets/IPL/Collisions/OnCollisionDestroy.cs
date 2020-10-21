@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using IPL.Pooling;
 
 public class OnCollisionDestroy : MonoBehaviour
 {
@@ -24,14 +25,14 @@ public class OnCollisionDestroy : MonoBehaviour
         switch (affectedObject)
         {
             case AffectedObject.Self:
-                Destroy(gameObject);
+                gameObject.TryRelease();
                 break;
             case AffectedObject.Other:
-                Destroy(other);
+                other.TryRelease();
                 break;
             case AffectedObject.Both:
-                Destroy(gameObject);
-                Destroy(other);
+                gameObject.TryRelease();
+                other.TryRelease();
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using IPL.Pooling;
+using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
@@ -8,7 +9,11 @@ public class FireController : MonoBehaviour
 
     public void Fire()
     {
-        var projectile = Instantiate(projectilePrefab, projectileSpawner.position, projectileSpawner.rotation);
+        if (projectilePrefab.TryAcquire(out var projectile) == false)
+            return;
+        var t = projectile.transform;
+        t.position = projectileSpawner.position;
+        t.rotation = projectileSpawner.rotation;
         var rb = projectile.GetComponent<Rigidbody2D>();
         if (rb)
            rb.velocity = projectileSpawner.right * projectileSpeed;

@@ -138,6 +138,17 @@
             <e p="Health.cs" t="Include" />
             <e p="IDamageable.cs" t="Include" />
           </e>
+          <e p="Pooling" t="Include">
+            <e p="GameObjectExtension.cs" t="Include" />
+            <e p="ObjectPool.cs" t="Include" />
+            <e p="Pooled.cs" t="Include" />
+          </e>
+          <e p="Score" t="Include">
+            <e p="GameManager.cs" t="Include" />
+            <e p="Score.cs" t="Include" />
+            <e p="ScoreManager.cs" t="Include" />
+            <e p="SingletonMb.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
