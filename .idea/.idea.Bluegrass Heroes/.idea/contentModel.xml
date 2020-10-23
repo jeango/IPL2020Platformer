@@ -133,6 +133,14 @@
             <e p="PlayerController.cs" t="Include" />
             <e p="SlimeController.cs" t="Include" />
           </e>
+          <e p="DropTable" t="Include">
+            <e p="Drop.cs" t="Include" />
+            <e p="DropTable.cs" t="Include" />
+          </e>
+          <e p="GameManager" t="Include">
+            <e p="GameManager.cs" t="Include" />
+            <e p="LevelLoader.cs" t="Include" />
+          </e>
           <e p="HealthManagement" t="Include">
             <e p="Damage.cs" t="Include" />
             <e p="Health.cs" t="Include" />
@@ -144,9 +152,9 @@
             <e p="Pooled.cs" t="Include" />
           </e>
           <e p="Score" t="Include">
-            <e p="GameManager.cs" t="Include" />
             <e p="Score.cs" t="Include" />
             <e p="ScoreManager.cs" t="Include" />
+            <e p="ScoreText.cs" t="Include" />
             <e p="SingletonMb.cs" t="Include" />
           </e>
         </e>

@@ -1,15 +1,16 @@
-﻿using TMPro;
+﻿using System;
 using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] private TMP_Text text;
     [SerializeField] private int _currentScore;
     [SerializeField] private int _hiScore;
+    public Action<int> onScoreChange;
+    public int Score => _currentScore;
 
     private void Awake()
     {
-        SetScore(0);
+        _currentScore = 0;
         _hiScore = PlayerPrefs.GetInt("HiScore");
     }
 
@@ -28,7 +29,7 @@ public class ScoreManager : MonoBehaviour
     {
         _currentScore = score;
         _hiScore = _currentScore > _hiScore ? _currentScore : _hiScore;
-        text.text = _currentScore.ToString();
+        onScoreChange(_currentScore);
     }
 
     public void AddScore(int value)

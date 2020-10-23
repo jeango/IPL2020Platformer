@@ -1,12 +1,14 @@
 ﻿using System;
 using UnityEngine;
 using IPL.Pooling;
+using UnityEngine.Events;
 
 public class OnCollisionDestroy : MonoBehaviour
 {
     [SerializeField] private AffectedObject affectedObject;
     [SerializeField] private bool destroyOnCollision;
     [SerializeField] private bool destroyOnTrigger;
+    [SerializeField] private UnityEvent onDestroyed;
     
     
     private void OnCollisionEnter2D(Collision2D other)
@@ -22,6 +24,7 @@ public class OnCollisionDestroy : MonoBehaviour
 
     private void DestroyObjects(GameObject other)
     {
+        onDestroyed?.Invoke();
         switch (affectedObject)
         {
             case AffectedObject.Self:
